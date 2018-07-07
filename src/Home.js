@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom'
 import {Query} from 'react-apollo'
 
 import Layout from './Layout'
+import Card from './Card'
+import Container from './Container'
 
 const GET_FEEDS = gql`
   query {
@@ -22,21 +24,24 @@ function Post({post}) {
   return (
     <div className="row">
       <div className="col">
-        <div className="card">
-          <div className="card-header">
-            <h3>
-              <Link to={`/posts/${post.id}`}>{post.title}</Link>
-            </h3>
+        <Card>
+          <Card.Header
+            title={<Link to={`/posts/${post.id}`}>{post.title}</Link>}
+          >
             <span>
               <small>{post.pubDate}</small>
             </span>
-          </div>
-          <div className="card-body">
-            <img src={post.thumbnail} alt={post.title} />
+          </Card.Header>
+          <Card.Body>
+            <img
+              src={post.thumbnail}
+              alt={post.title}
+              style={{height: '200px'}}
+            />
             <p dangerouslySetInnerHTML={{__html: post.description}} />
-          </div>
-          <div className="card-footer">{post.author}</div>
-        </div>
+          </Card.Body>
+          <Card.Footer>{post.author}</Card.Footer>
+        </Card>
       </div>
     </div>
   )
@@ -47,7 +52,7 @@ class Home extends Component {
     return (
       <Layout>
         <section>
-          <div className="container">
+          <Container>
             <Query query={GET_FEEDS}>
               {({loading, error, data}) => {
                 if (loading) return 'Loading...'
@@ -56,7 +61,7 @@ class Home extends Component {
                 return data.feed.map(post => <Post post={post} key={post.id} />)
               }}
             </Query>
-          </div>
+          </Container>
         </section>
       </Layout>
     )

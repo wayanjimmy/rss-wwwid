@@ -1,8 +1,9 @@
 import React from 'react'
 import gql from 'graphql-tag'
+import {Query} from 'react-apollo'
 
 import Layout from './Layout'
-import {Query} from 'react-apollo'
+import Card from './Card'
 
 const GET_POST = gql`
   query post($id: ID!) {
@@ -32,20 +33,19 @@ class Post extends React.Component {
                   if (error) return 'Something wrong :('
 
                   return (
-                    <div className="card">
-                      <div className="card-title">
-                        <h3>{data.post.title}</h3>
+                    <Card>
+                      <Card.Header title={<h3>{data.post.title}</h3>}>
                         <span>
                           <small>{data.post.pubDate}</small>
                         </span>
-                      </div>
-                      <div className="card-body">
+                      </Card.Header>
+                      <Card.Body>
                         <div
                           dangerouslySetInnerHTML={{__html: data.post.content}}
                         />
-                      </div>
-                      <div className="card-footer">{data.post.author}</div>
-                    </div>
+                      </Card.Body>
+                      <Card.Footer>{data.post.author}</Card.Footer>
+                    </Card>
                   )
                 }}
               </Query>

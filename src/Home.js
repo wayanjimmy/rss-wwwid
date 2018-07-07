@@ -94,13 +94,15 @@ class Home extends Component {
                     </section>
                   </Container>
                   <Container>
-                    {data.feed.filter(post => {
-                      if (selectedCategory.length === 0) {
-                        return true
-                      }
+                    {data.feed
+                      .filter(post => {
+                        if (selectedCategory.length === 0) {
+                          return true
+                        }
 
-                      return post.categories.includes(selectedCategory)
-                    }).map(post => <Post post={post} key={post.id} />)}
+                        return post.categories.includes(selectedCategory)
+                      })
+                      .map(post => <Post post={post} key={post.id} />)}
                   </Container>
                 </React.Fragment>
               )

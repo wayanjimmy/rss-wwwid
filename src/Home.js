@@ -53,9 +53,7 @@ class Home extends Component {
                 if (loading) return 'Loading...'
                 if (error) return 'Something wrong :('
 
-                return data.feed.map(post => (
-                  <Post post={post} key={post.id} />
-                ))
+                return data.feed.map(post => <Post post={post} key={post.id} />)
               }}
             </Query>
           </div>

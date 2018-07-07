@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import gql from 'graphql-tag'
 import {Link} from 'react-router-dom'
 import {Query} from 'react-apollo'
+import Image from 'react-graceful-image'
 
 import Layout from './Layout'
 import Card from './Card'
@@ -33,11 +34,7 @@ function Post({post}) {
             </span>
           </Card.Header>
           <Card.Body>
-            <img
-              src={post.thumbnail}
-              alt={post.title}
-              style={{height: '200px'}}
-            />
+            <Image src={post.thumbnail} width={200} alt={post.title} />
             <p dangerouslySetInnerHTML={{__html: post.description}} />
           </Card.Body>
           <Card.Footer>{post.author}</Card.Footer>

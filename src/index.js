@@ -22,7 +22,7 @@ const Loading = () => <div>Loading..</div>
 
 const client = new ApolloClient({
   link: createHttpLink({
-    uri: 'https://wwwid-graphql.glitch.me'
+    uri: 'https://wwwid-graphql--wayanjimmy.repl.co'
   }),
   cache,
   connectToDevTools: process.env.NODE_ENV !== 'production'
